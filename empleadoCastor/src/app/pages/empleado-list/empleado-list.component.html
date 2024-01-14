@@ -1,0 +1,42 @@
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>Id Empleado</th>
+            <th>Nombre Empleado</th>
+            <th>Cedula</th>
+            <th>Fecha</th>
+            <th>Cargo</th>
+            <th>Foto</th>
+
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let empleados of empleados">
+            <td>{{ empleados.idEmpleado }}</td>
+            <td>{{ empleados.nombre }}</td>
+            <td>{{ empleados.cedula }}</td>
+            <td>{{ empleados.fecha }}</td>
+            <td>{{ empleados.cargo.nombre }}</td>
+            <td>
+                <img class="img-circle" (error)="handleImgError()" [src]="'data:image/png;base64,' + empleados.fotoBase64" />
+
+                <ng-template #placeholder>
+                    <div class="placeholder-img"></div>
+                </ng-template>
+            </td>
+
+            <td>
+                <button class="btn btn-primary" (click)="llenarForm(empleados)">
+          <i class="fa fa-edit"></i>
+        </button>
+            </td>
+            <td>
+                <button class="btn btn-danger" (click)="deleteEmpleado(empleados)">
+          <i class="fa fa-trash-o"></i>
+        </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
